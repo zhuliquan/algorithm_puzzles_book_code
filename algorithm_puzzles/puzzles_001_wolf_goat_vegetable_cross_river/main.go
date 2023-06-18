@@ -19,22 +19,6 @@ const (
 	F
 )
 
-func FT(S byte) byte {
-	return S ^ F
-}
-
-func FWT(S byte) byte {
-	return S ^ (F | W)
-}
-
-func FGT(S byte) byte {
-	return S ^ (F | G)
-}
-
-func FVT(S byte) byte {
-	return S ^ (F | V)
-}
-
 func printSide(b bool) string {
 	if b {
 		return "R"
@@ -63,6 +47,14 @@ func printState(S byte) {
 	)
 }
 
+func right(S, P byte) bool {
+	return S&P == P
+}
+
+func valid(S byte) bool {
+	return !(right(S, W) == right(S, G) && right(S, F) != right(S, W)) && !(right(S, G) == right(S, V) && right(S, F) != right(S, G))
+}
+
 func main() {
 	R := &State{Value: 0, Path: []byte{0}}
 	Q := []*State{R}
@@ -75,17 +67,31 @@ func main() {
 				printPath(Sp.Path)
 				return
 			}
-
-			for _, FF := range []func(byte) byte{
-				FT, FWT, FGT, FVT,
-			} {
-				if Sn := FF(Sp.Value); !(Sn&W == Sn&G && Sn&F != Sn&W) && !(Sn&G == Sn&V && Sn&F != Sn&G) {
+			if nextValue := Sp.Value ^ F; valid(nextValue) {
+				path := make([]byte, len(Sp.Path))
+				copy(path, Sp.Path)
+				Qn = append(Qn, &State{Value: nextValue, Path: append(path, nextValue)})
+			}
+			if right(Sp.Value, F) == right(Sp.Value, W) { // farmer and wolf in a side
+				if nextValue := Sp.Value ^ (F | W); valid(nextValue) {
 					path := make([]byte, len(Sp.Path))
 					copy(path, Sp.Path)
-					children := &State{Value: Sn, Path: append(path, Sn)}
-					Qn = append(Qn, children)
+					Qn = append(Qn, &State{Value: nextValue, Path: append(path, nextValue)})
 				}
-
+			}
+			if right(Sp.Value, F) == right(Sp.Value, G) { // farmer and goat in a side
+				if nextValue := Sp.Value ^ (F | G); valid(nextValue) {
+					path := make([]byte, len(Sp.Path))
+					copy(path, Sp.Path)
+					Qn = append(Qn, &State{Value: nextValue, Path: append(path, nextValue)})
+				}
+			}
+			if right(Sp.Value, F) == right(Sp.Value, V) { // farmer and vegetable in a side
+				if nextValue := Sp.Value ^ (F | V); valid(nextValue) {
+					path := make([]byte, len(Sp.Path))
+					copy(path, Sp.Path)
+					Qn = append(Qn, &State{Value: nextValue, Path: append(path, nextValue)})
+				}
 			}
 
 		}
