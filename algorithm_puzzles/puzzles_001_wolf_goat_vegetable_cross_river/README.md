@@ -1,12 +1,12 @@
 # Wolf Goat Vegetable Cross River
 
 ## Description
+
 A farmer with a wolf, a goat, and a cabbage must cross a river by boat. The boat can carry only the farmer and a single item. If left unattended together, the wolf would eat the goat, or the goat would eat the cabbage. How can they cross the river without anything being eaten?
 
 ## Definition
 
 1、F: Farmer 2、W: Wolf 3、G: Goat 4、V: Vegetable, there are four variable can only be 0 or 1, that 0 define left of river and 1 define right of river. We use `S = (F, W, G, V)` define state of puzzle, and begin state is `Ss = (0, 0, 0, 0)`, and final state is `Sf = (1, 1, 1, 1)`.
-
 
 ## Restriction
 
@@ -20,8 +20,8 @@ A farmer with a wolf, a goat, and a cabbage must cross a river by boat. The boat
 3、We donate `FG(S)` as pass farmer and goat, that `FG(S) => (~F, W, ~G, V)`
 4、We donate `FV(S)` as pass farmer and vegetable, that `FV(S) => (~F, W, G, ~V)`
 
-
 ## Pseudo-code
+
 ```c
 S = (0,0,0,0)
 Q = { S }

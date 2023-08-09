@@ -1,4 +1,5 @@
 # algorithm_puzzles_book_code
+
 code for book **algorithm puzzle**
 
 |puzzle|code|
