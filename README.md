@@ -8,3 +8,4 @@ code for book **algorithm puzzle**
 |selecting gloves| [puzzles_02](https://github.com/zhuliquan/algorithm_puzzles_book_code/blob/master/algorithm_puzzles/puzzles_002_slecting_gloves/README.md) |
 |rectangle split triangles | [puzzles_03](https://github.com/zhuliquan/algorithm_puzzles_book_code/blob/master/algorithm_puzzles/puzzles_003_rectangle_split_triangle/README.md) |
 |ferry soldiers|[puzzles_04](https://github.com/zhuliquan/algorithm_puzzles_book_code/blob/master/algorithm_puzzles/puzzles_004_ferry_soldiers/README.md)|
+| row and column transpose | [puzzles_05](https://github.com/zhuliquan/algorithm_puzzles_book_code/blob/master/algorithm_puzzles/puzzles_004_row_and_column_transformation/README.md) |
